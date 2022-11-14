@@ -1,5 +1,5 @@
 # Mini_Projects
-1) ToDoList with React.js
+##ToDoList with React.js
 In the project directory, you can run:
 
 ### `npm start`
