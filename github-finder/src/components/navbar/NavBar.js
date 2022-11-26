@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="#home"><VscGithub style={{color:'yellow'}}/> Github Finder</Navbar.Brand>
+        <Navbar.Brand href="/"><VscGithub style={{color:'yellow'}}/> Github Finder</Navbar.Brand>
       </Container>
     </Navbar>
   );

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Card, Col, Row, Button } from "react-bootstrap";
+import React from "react";
+import { Card, Col } from "react-bootstrap";
 import "./user.css";
 
 const User = ({ user }) => {
