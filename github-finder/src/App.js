@@ -3,23 +3,24 @@ import Users from "./components/users/Users";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "./components/loading/Loading";
+import Search from "./components/search/Search";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      Axios.get("http://api.github.com/users").then((res) => {
-        setUsers(res.data);
+  const searchUsers = (keyword) => {
+    setLoading(true);
+    Axios.get(`https://api.github.com/search/users?q=${keyword}`).then(
+      (response) => {
+        setUsers(response.data.items);
         setLoading(false);
-      });
-    }, 2000);
-  }, []);
-
+      }
+    );
+  };
   return (
     <>
       <NavBar />
+      <Search searchUsers={searchUsers} />
       <Users users={users} loading={loading} />
     </>
   );
