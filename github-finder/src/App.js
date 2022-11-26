@@ -1,10 +1,9 @@
-import NavBar from "./components/navbar/NavBar";
-import Users from "./components/users/Users";
 import Axios from "axios";
 import { useState } from "react";
-import Search from "./components/search/Search";
-import MyAlert from "./components/myalert/MyAlert";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/homePage/HomePage";
+import SearchPage from "./pages/searchPage/SearchPage";
+import Layout from "./pages/layout/Layout";
 function App() {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
@@ -25,23 +24,33 @@ function App() {
   };
   const initAlert = (msg, type) => {
     setAlert({ msg, type });
-    setTimeout(()=>{
+    setTimeout(() => {
       setAlert(null);
-    }, 3000)
+    }, 3000);
   };
-  
+
   return (
     <>
-      <NavBar />
-      <MyAlert alert={alert} show={show} setShow={setShow}/>
-      <Search
-        searchUsers={searchUsers}
-        clearUsers={clearUsers}
-        showClearButton={users.length > 0 ? true : false}
-        initAlert={initAlert}
-        setShow={setShow}
-      />
-      <Users users={users} loading={loading} />
+      <BrowserRouter>
+        <Layout alert={alert} show={show} setShow={setShow}/>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/search"
+            element={
+              <SearchPage
+                searchUsers={searchUsers}
+                clearUsers={clearUsers}
+                showClearButton={users.length > 0 ? true : false}
+                initAlert={initAlert}
+                setShow={setShow}
+                users={users}
+                loading={loading}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

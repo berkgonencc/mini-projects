@@ -25,7 +25,7 @@ const Search = ({ searchUsers, clearUsers, showClearButton, initAlert, setShow }
             }}
             placeholder="Search"
           />
-          <Button type="submit">Search</Button>
+          <Button type="submit" className="btn btn-sm btn-warning">Search</Button>
         </InputGroup>
         {/*if showClearButton is true <div appears */}
         {showClearButton && (
