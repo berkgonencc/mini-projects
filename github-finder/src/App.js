@@ -4,17 +4,39 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import SearchPage from "./pages/searchPage/SearchPage";
 import Layout from "./pages/layout/Layout";
+import { AppContext } from "./contexts/AppContext";
+import UserDetailsPage from "./pages/userDetailsPage/UserDetailsPage";
+
 function App() {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
   const [alert, setAlert] = useState(null);
   const [show, setShow] = useState(true);
+  const [showClearButton, setShowClearButton] = useState(false);
+  const [user, setUser] = useState({});
 
+  
+
+  const getUser = (userName) => {
+    setLoading(true);
+    Axios.get(`https://api.github.com/users/${userName}`).then((response) => {
+      setUser(response.data);
+      setLoading(false);
+    });
+  };
   const searchUsers = (keyword) => {
     setLoading(true);
     Axios.get(`https://api.github.com/search/users?q=${keyword}`).then(
       (response) => {
-        setUsers(response.data.items);
+        if (response.data.total_count > 0) {
+          setUsers(response.data.items);
+          setShowClearButton(true);
+        } else {
+          setUsers([]);
+          setShow(true);
+          initAlert("No Result!", "warning");
+          setShowClearButton(false);
+        }
         setLoading(false);
       }
     );
@@ -26,31 +48,36 @@ function App() {
     setAlert({ msg, type });
     setTimeout(() => {
       setAlert(null);
-    }, 3000);
+    }, 2000);
   };
 
   return (
     <>
-      <BrowserRouter>
-        <Layout alert={alert} show={show} setShow={setShow}/>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/search"
-            element={
-              <SearchPage
-                searchUsers={searchUsers}
-                clearUsers={clearUsers}
-                showClearButton={users.length > 0 ? true : false}
-                initAlert={initAlert}
-                setShow={setShow}
-                users={users}
-                loading={loading}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <AppContext.Provider
+        value={{
+          alert,
+          show,
+          setShow,
+          searchUsers,
+          clearUsers,
+          initAlert,
+          users,
+          loading,
+          showClearButton,
+          setShowClearButton,
+          user,
+          getUser,
+        }}
+      >
+        <BrowserRouter>
+          <Layout />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/getuser/:login" element={<UserDetailsPage />} />
+          </Routes>
+        </BrowserRouter>
+      </AppContext.Provider>
     </>
   );
 }

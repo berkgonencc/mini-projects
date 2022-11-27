@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row } from "react-bootstrap";
 import Loading from "../loading/Loading";
 import User from "../user/User";
+import {AppContext} from "../../contexts/AppContext"
 
-const Users = ({ users, loading }) => {
-  if (loading) {
+const Users = () => {
+  const context = useContext(AppContext)
+  if (context.loading) {
     return <Loading />;
   } else {
     return (
       <Container>
         <Row className="mt-3">
-          {users.map((u) => (
+          {context.users.map((u) => (
             <User user={u} key={u.id} />
           ))}
         </Row>

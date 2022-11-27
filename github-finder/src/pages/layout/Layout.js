@@ -1,13 +1,13 @@
-import React from 'react'
-import MyAlert from '../../components/myalert/MyAlert'
-import NavBar from '../../components/navbar/NavBar'
-const Layout = ({alert, show, setShow}) => {
+import React from "react";
+import MyAlert from "../../components/myalert/MyAlert";
+import NavBar from "../../components/navbar/NavBar";
+const Layout = () => {
   return (
     <>
-        <NavBar />
-        <MyAlert alert={alert} show={show} setShow={setShow} />
+      <NavBar />
+      <MyAlert />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

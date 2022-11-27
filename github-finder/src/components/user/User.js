@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import "./user.css";
 
 const User = ({ user }) => {
@@ -15,9 +16,9 @@ const User = ({ user }) => {
             <a href={user.html_url} className="btn btn-sm btn-primary me-2">
               Github
             </a>
-            <a href={user.url} className="btn btn-sm btn-warning">
+            <NavLink to={`/getuser/${user.login}`} className="btn btn-sm btn-warning">
               Details
-            </a>
+            </NavLink>
           </Card.Body>
         </Col>
       </Card>
