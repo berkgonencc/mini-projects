@@ -10,10 +10,10 @@ import {
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../contexts/AppContext";
 
-
 const UserDetailsPage = () => {
   const context = useContext(AppContext);
   const { login } = useParams();
+ 
   useEffect(() => {
     context.getUser(login);
   }, []);
@@ -25,7 +25,7 @@ const UserDetailsPage = () => {
             <Card.Img
               className="d-flex align-items-center m-3 rounded-4"
               variant="top"
-              src={context.user.avatar_url}
+              src={context.user.  avatar_url}
             />
           </Col>
           <Col xs={8}>
@@ -48,7 +48,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Location</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <span>{context.user.location}</span>
@@ -59,7 +59,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Followers</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <span>{context.user.followers}</span>
@@ -70,7 +70,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Following</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <span>{context.user.following}</span>
@@ -81,7 +81,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Blog</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <span>
@@ -100,7 +100,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Company</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <span>{context.user.company}</span>
@@ -111,7 +111,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Twitter</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <span>{context.user.twitter_username}</span>
@@ -122,7 +122,7 @@ const UserDetailsPage = () => {
                     <h6 className="m-0">Github Repositories</h6>
                   </Col>
                   <Col xs={1}>
-                    <h6>:</h6>
+                    <h6 className="text-center">:</h6>
                   </Col>
                   <Col xs={7}>
                     <a

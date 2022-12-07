@@ -14,8 +14,14 @@ function App() {
   const [show, setShow] = useState(true);
   const [showClearButton, setShowClearButton] = useState(false);
   const [user, setUser] = useState({});
-
-  
+  // const [repos, setRepos] = useState({});
+  // const getRepos = (userName) => {
+  //   Axios.get(`https://api.github.com/users/${userName}/repos`).then(
+  //     (response) => {
+  //       setRepos(response.data);
+  //     }
+  //   );
+  // };
 
   const getUser = (userName) => {
     setLoading(true);
@@ -67,6 +73,8 @@ function App() {
           setShowClearButton,
           user,
           getUser,
+          // repos,
+          // getRepos,
         }}
       >
         <BrowserRouter>
