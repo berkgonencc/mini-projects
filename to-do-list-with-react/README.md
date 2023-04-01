@@ -1,4 +1,4 @@
-## 1) ToDoList with React
+## ToDoList with React
 In the project directory, after you installed the node.js:
 
 ### `npm install`
