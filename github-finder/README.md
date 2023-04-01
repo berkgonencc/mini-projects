@@ -1,6 +1,9 @@
+## 1) GithubFinder with React
+In the project directory, after you installed the node.js:
 
+### `npm install`
 
-In the project directory, you can run:
+Then you can run:
 
 ### `npm start`
 
