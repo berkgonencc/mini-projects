@@ -1,4 +1,4 @@
-## 1) GithubFinder with React
+## GithubFinder with React
 In the project directory, after you installed the node.js:
 
 ### `npm install`
